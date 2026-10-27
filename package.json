@@ -1,0 +1,24 @@
+{
+  "name": "shoes-3d",
+  "version": "1.0.0",
+  "description": "LocalShoes – Premium footwear e-commerce website for men, women, and kids.",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rohit609518/JS-Demo.git"
+  },
+  "keywords": ["shoes", "footwear", "ecommerce", "localshoes"],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Rohit609518/JS-Demo/issues"
+  },
+  "homepage": "https://github.com/Rohit609518/JS-Demo#readme",
+  "dependencies": {
+    "serve": "^14.2.3"
+  }
+}

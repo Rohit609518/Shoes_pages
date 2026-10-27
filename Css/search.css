@@ -1,0 +1,299 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.header{
+    height: 60px;
+    width: 100%;
+    background: linear-gradient(
+        135deg,
+        #091413,
+        #1A1953
+    );
+    color: white;
+    text-decoration: none;
+  
+}
+
+.logo{
+    color:#BBD5DA ;
+     display: flex;
+     position: relative;
+     top: 20px;
+     font-size: 25px;
+     font-weight: bold;
+     transition: 04s;
+     box-shadow: 5px 5px 5px #fff;
+     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+
+    
+}
+
+.logo:hover{
+    color: #DB1A1A;
+    transform: matrix3d(0.1);
+}
+
+
+
+nav{
+    height: 60px;
+    width: auto;
+    display: block;
+    justify-content: end;
+    align-items: end;
+    margin-left: 500px;
+   
+}
+
+nav a{
+ text-decoration: none;
+    color: #fff;
+      text-transform: capitalize;
+      transition: 2s;
+     padding: 12px;
+      font-size: 15px;
+      font-weight: 500;
+
+}
+
+/* home page */
+
+.box1{
+     height: 480px;
+     width: 100%;
+    background-image:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5))
+     ,url(./ryan-waring-164_6wVEHfI-unsplash.jpg);
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+
+}
+
+.page1{
+    height: 350px;
+    width: 500px;
+    background-color:transparent;
+    padding-left: 30px;
+
+}
+
+h2{
+    text-align: center;
+    font-weight: 400;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    padding-top: 60px;
+    letter-spacing: 0.2ch;
+    color: #fff;
+    font-size: 37px;
+    transition: 2s;
+
+   
+}
+
+h2:hover{
+    transform: rotateY(45deg);
+}
+
+
+p{
+    text-align:center;
+    font-size: 13px;
+    padding-top: 25px;
+    color: #fff;
+    padding: 30px;
+}
+
+button{
+    height: 30px;
+    width:100px;
+   margin-left: 80px;
+   margin-top: 30px;
+   border-radius: 20px;
+   background-color: #E4D329;
+   color: #fff;
+   font-weight: 500;
+   border: none;
+}
+
+button:hover{
+    box-shadow: 0 0 30px #c084fc,0 0 50px #ec489933;
+}
+
+/* close in page 1 */
+
+.box2{
+  height: 300px;
+  width: 100%;
+  /* background-color: #091413; */
+}
+
+.list{
+    height: 500px;
+    width: 100%;
+    /* background-color: #091413; */
+    display: flex;
+    align-items: center;
+    justify-content: center;  
+    gap: 10px;
+}
+
+li{
+    height: 320px;
+    width: 205px;
+    display:block;
+    justify-content: space-around;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    opacity: 0;
+    transform: translateY(100px);
+    transition: 0.7s ease;
+    margin: 0;
+    position: relative;
+    bottom: 50px;
+}
+
+.title{
+    margin-top:10px;
+    padding: 0;
+    color: #091413;
+    transition: 2s;
+}
+
+.title:hover{
+    transform: scaleY(0.5);
+}
+img{
+    height: 200px;
+    width: 200px;
+    background-size: cover;
+
+}
+
+.para{
+    text-align:center;
+    color: black;
+    padding: 0;
+    margin-top: 10px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.but{
+    margin: 0;
+    padding: 0;
+    display: inline;
+    margin-top: 35px;
+    background-color: #091413;
+}
+
+.but:hover{
+    background-color: black;
+    color: white;
+
+    transform: translateY(-10px)scale(1.1);
+
+    box-shadow: 0 0 20px cyan,0 0 35px cyan;
+}
+
+del{
+    font-size: 10px;
+    color: tomato;
+    font-weight: 600;
+    margin-left: 8px;
+}
+
+span{
+    font-size: 14px;
+    font-weight: bold;
+
+}
+
+/* seel page 2 */
+
+.box3{
+    height: 400px;
+    width: 100%;
+    /* background-color: #091413; */
+}
+
+.bbo{
+    height: 20px;
+    width: 100%;
+    border-radius: 15px;
+    margin-top: 120px;
+     border: 4px solid transparent;
+
+    background-image:
+    linear-gradient(
+        135deg,
+        #1591DC,
+        #C13383,
+        #FF85BB,
+        #0992C2
+    );
+       background-origin: border-box;
+    background-clip: padding-box, border-box;
+
+    box-shadow:
+    0 0 15px rgba(21,145,220,0.5),
+    0 0 25px rgba(193,51,131,0.4),
+    0 0 35px rgba(255,133,187,0.3);
+
+    transition: 0.4s ease;
+}
+
+.bbo :hover{
+    box-shadow:
+    0 0 15px rgba(21,145,220,0.5),
+    0 0 25px rgba(193,51,131,0.4),
+    0 0 35px rgba(255,133,187,0.3);
+
+    transition: 0.4s ease;
+}
+
+.grid{
+    display: flex;
+    grid-template-columns:repeat(2 300px);
+    gap: 20px;
+    justify-content: center;
+}
+
+
+.item{
+    height: 320px;
+    width: 390px;
+    background-color: #091413;
+    margin-top: 15px;
+   
+  
+}
+
+.item .para{
+     font-size: 20px;
+    color: white;
+    text-transform: capitalize;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+
+}
+
+.item .but{
+    position: relative;
+    left: 80px;
+    background-color: #5A0E24;
+    font-weight: 700px;
+
+}
+
+.item .buto{
+    
+    background-color: transparent;
+    border: 2px solid #FFEE91;
+    font-weight: 600px;
+     position: relative;
+     left: 27px;
+}

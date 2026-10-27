@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="LocalShoes – Discover premium footwear for men, women, and kids. Shop the latest sneakers, running shoes, casual shoes, and more at unbeatable prices." />
+  <meta name="keywords" content="shoes, sneakers, footwear, running shoes, men shoes, women shoes, kids shoes, LocalShoes" />
+  <title>LocalShoes 👟 – Step Into Your Style</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <!-- Fixed: CSS is in Css/ folder, images in images/ folder, script.js in parent -->
+  <link rel="stylesheet" href="../Css/style.css" />
+</head>
+<body>
+
+  <!-- ===================== TOAST NOTIFICATION ===================== -->
+  <div id="toast" class="toast" role="alert" aria-live="polite">
+    <span id="toast-icon">✓</span>
+    <span id="toast-msg">Added to cart!</span>
+  </div>
+
+  <!-- ===================== BACK TO TOP ===================== -->
+  <button id="back-to-top" aria-label="Back to top" title="Back to top">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+  </button>
+
+  <!-- ===================== NAVBAR ===================== -->
+  <header id="navbar" class="navbar">
+    <nav class="nav-container" aria-label="Main navigation">
+      <a href="#home" class="nav-logo" aria-label="LocalShoes Home">
+        <span class="logo-icon">👟</span>
+        <span class="logo-text">Local<span class="logo-accent">Shoes</span></span>
+      </a>
+      <ul class="nav-links" id="nav-links" role="menubar">
+        <li role="none"><a href="#home" class="nav-link active" role="menuitem">Home</a></li>
+        <li role="none"><a href="#about" class="nav-link" role="menuitem">About</a></li>
+        <li role="none"><a href="#men" class="nav-link" role="menuitem">Men</a></li>
+        <li role="none"><a href="#women" class="nav-link" role="menuitem">Women</a></li>
+        <li role="none"><a href="#kids" class="nav-link" role="menuitem">Kids</a></li>
+        <li role="none"><a href="#contact" class="nav-link" role="menuitem">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="nav-icon-btn" id="search-toggle-btn" aria-label="Toggle search" aria-expanded="false">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        </button>
+        <button class="nav-icon-btn cart-btn" id="cart-open-btn" aria-label="Open shopping cart" aria-haspopup="dialog">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 01-8 0"></path></svg>
+          <span class="cart-count" id="cart-count" aria-label="Cart items">0</span>
+        </button>
+        <button class="hamburger" id="hamburger-btn" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="nav-links">
+          <span class="ham-line"></span>
+          <span class="ham-line"></span>
+          <span class="ham-line"></span>
+        </button>
+      </div>
+    </nav>
+    <div class="search-bar-container" id="search-bar-container" aria-hidden="true">
+      <div class="search-bar-inner">
+        <input type="search" id="search-input" placeholder="Search for shoes, brands, categories..." aria-label="Search products" autocomplete="off" />
+        <button id="search-submit-btn" aria-label="Submit search">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        </button>
+        <button id="search-close-btn" aria-label="Close search">&#x2715;</button>
+      </div>
+      <div id="search-results" class="search-results" role="listbox" aria-label="Search results"></div>
+    </div>
+  </header>
+
+  <!-- ===================== CART DRAWER ===================== -->
+  <div class="cart-overlay" id="cart-overlay" aria-hidden="true"></div>
+  <aside class="cart-drawer" id="cart-drawer" role="dialog" aria-modal="true" aria-label="Shopping cart" aria-hidden="true">
+    <div class="cart-header">
+      <h2 class="cart-title">Your Cart</h2>
+      <button class="cart-close-btn" id="cart-close-btn" aria-label="Close cart">&#x2715;</button>
+    </div>
+    <div class="cart-body" id="cart-body"></div>
+    <div class="cart-footer" id="cart-footer" style="display:none">
+      <div class="cart-subtotal">
+        <span>Subtotal</span>
+        <span id="cart-subtotal">&#8377;0</span>
+      </div>
+      <div class="cart-shipping">
+        <span>Shipping</span>
+        <span>FREE</span>
+      </div>
+      <div class="cart-total">
+        <span>Total</span>
+        <span id="cart-total">&#8377;0</span>
+      </div>
+      <button class="btn-checkout" id="checkout-btn">Proceed to Checkout</button>
+      <p class="cart-disclaimer">* This is a demo store. No real payments are processed.</p>
+    </div>
+  </aside>
+
+  <main>
+    <!-- ===================== HERO SECTION ===================== -->
+    <section id="home" class="hero-section" aria-label="Hero">
+      <div class="hero-bg-glow"></div>
+      <div class="hero-container">
+        <div class="hero-content reveal">
+          <span class="hero-badge">New Season 2026 &#x1F525;</span>
+          <h1 class="hero-heading">
+            STEP INTO<br />
+            <span class="hero-accent">YOUR STYLE</span>
+          </h1>
+          <p class="hero-subtitle">Discover Your Perfect Pair.<br />Walk With Confidence.</p>
+          <div class="hero-buttons">
+            <a href="#men" class="btn btn-primary" id="hero-shop-men">Shop Men</a>
+            <a href="#women" class="btn btn-secondary" id="hero-shop-women">Shop Women</a>
+            <a href="#products" class="btn btn-outline" id="hero-explore">Explore Collection</a>
+          </div>
+          <div class="hero-stats">
+            <div class="stat-item">
+              <span class="stat-number">500+</span>
+              <span class="stat-label">Products</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <span class="stat-number">50K+</span>
+              <span class="stat-label">Happy Customers</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <span class="stat-number">4.9&#x2605;</span>
+              <span class="stat-label">Avg Rating</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero-image-wrap reveal reveal-right">
+          <div class="hero-glow-ring"></div>
+          <img
+            src="../images/hero_sneaker.jpg"
+            alt="Premium LocalShoes orange and black running sneakers with dynamic orange light trails"
+            class="hero-shoe-img floating"
+            loading="eager"
+            onerror="this.src='https://via.placeholder.com/700x400/F0F4FF/FF6B35?text=LocalShoes'"
+          />
+          <div class="hero-badge-float badge-float-1"><span>&#x26A1;</span> New Arrival</div>
+          <div class="hero-badge-float badge-float-2"><span>&#x1F525;</span> Best Seller</div>
+        </div>
+      </div>
+      <div class="hero-scroll-indicator" aria-hidden="true">
+        <span>Scroll</span>
+        <div class="scroll-line"></div>
+      </div>
+    </section>
+
+    <!-- ===================== CATEGORIES SECTION ===================== -->
+    <section id="categories" class="categories-section">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-badge">Collections</span>
+          <h2 class="section-title">Shop By Category</h2>
+          <p class="section-subtitle">Find the perfect pair for every occasion</p>
+        </div>
+        <div class="categories-grid">
+          <article id="men" class="category-card reveal" tabindex="0" aria-label="Men's Collection">
+            <div class="category-img-wrap">
+              <img src="../images/mens_running_shoe.jpg" alt="Men's black and orange running sneaker" class="category-img" loading="lazy" onerror="this.src='https://via.placeholder.com/400x300/E8F0FF/FF6B35?text=Men'" />
+              <div class="category-overlay"></div>
+            </div>
+            <div class="category-content">
+              <span class="category-tag">Men's</span>
+              <h3 class="category-title">Men's Collection</h3>
+              <ul class="category-list">
+                <li>Running Shoes</li><li>Casual Sneakers</li><li>Formal Shoes</li><li>Sports Shoes</li>
+              </ul>
+              <button class="btn btn-primary category-btn" data-filter="men" aria-label="Shop Men's Collection">Shop Now &#x2192;</button>
+            </div>
+          </article>
+          <article id="women" class="category-card reveal" tabindex="0" aria-label="Women's Collection">
+            <div class="category-img-wrap">
+              <img src="../images/womens_sneaker.jpg" alt="Women's white and rose gold fashion sneaker" class="category-img" loading="lazy" onerror="this.src='https://via.placeholder.com/400x300/E8F0FF/FF6B35?text=Women'" />
+              <div class="category-overlay"></div>
+            </div>
+            <div class="category-content">
+              <span class="category-tag">Women's</span>
+              <h3 class="category-title">Women's Collection</h3>
+              <ul class="category-list">
+                <li>Stylish Sneakers</li><li>Heels</li><li>Casual Shoes</li><li>Running Shoes</li>
+              </ul>
+              <button class="btn btn-primary category-btn" data-filter="women" aria-label="Shop Women's Collection">Shop Now &#x2192;</button>
+            </div>
+          </article>
+          <article id="kids" class="category-card reveal" tabindex="0" aria-label="Kids' Collection">
+            <div class="category-img-wrap">
+              <img src="../images/kids_shoe.jpg" alt="Kids' colorful blue and yellow athletic running shoe" class="category-img" loading="lazy" onerror="this.src='https://via.placeholder.com/400x300/E8F0FF/FF6B35?text=Kids'" />
+              <div class="category-overlay"></div>
+            </div>
+            <div class="category-content">
+              <span class="category-tag">Kids'</span>
+              <h3 class="category-title">Kids' Collection</h3>
+              <ul class="category-list">
+                <li>School Shoes</li><li>Sports Shoes</li><li>Casual Sneakers</li><li>Everyday Comfort</li>
+              </ul>
+              <button class="btn btn-primary category-btn" data-filter="kids" aria-label="Shop Kids' Collection">Shop Now &#x2192;</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== PRODUCTS SECTION ===================== -->
+    <section id="products" class="products-section">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-badge">Trending Now</span>
+          <h2 class="section-title">Trending Products</h2>
+          <p class="section-subtitle">Hand-picked bestsellers loved by thousands</p>
+        </div>
+        <div class="products-controls reveal">
+          <div class="filter-tabs" role="tablist" aria-label="Filter products by category">
+            <button class="filter-tab active" data-filter="all" role="tab" aria-selected="true" id="tab-all">All</button>
+            <button class="filter-tab" data-filter="men" role="tab" aria-selected="false" id="tab-men">Men</button>
+            <button class="filter-tab" data-filter="women" role="tab" aria-selected="false" id="tab-women">Women</button>
+            <button class="filter-tab" data-filter="kids" role="tab" aria-selected="false" id="tab-kids">Kids</button>
+          </div>
+          <div class="sort-wrap">
+            <label for="sort-select" class="sr-only">Sort products</label>
+            <select id="sort-select" class="sort-select" aria-label="Sort products">
+              <option value="default">Sort By: Featured</option>
+              <option value="price-asc">Price: Low to High</option>
+              <option value="price-desc">Price: High to Low</option>
+              <option value="rating">Top Rated</option>
+            </select>
+          </div>
+        </div>
+        <div class="products-grid" id="products-grid" role="list" aria-label="Product listings"></div>
+        <div class="no-results" id="no-results" style="display:none" aria-live="polite">
+          <span>&#x1F615;</span>
+          <p>No products found. Try a different filter.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== ABOUT SECTION ===================== -->
+    <section id="about" class="about-section">
+      <div class="container">
+        <div class="about-grid">
+          <div class="about-image-wrap reveal">
+            <img src="../images/about_shoes_lifestyle.jpg" alt="Premium LocalShoes collection arranged artfully" class="about-img" loading="lazy" onerror="this.src='https://via.placeholder.com/600x500/F0F4FF/FF6B35?text=LocalShoes'" />
+            <div class="about-badge-float">
+              <span class="about-badge-num">10+</span>
+              <span class="about-badge-text">Years of Craftsmanship</span>
+            </div>
+          </div>
+          <div class="about-content reveal reveal-right">
+            <span class="section-badge">Our Story</span>
+            <h2 class="section-title">Every Step<br /><span class="hero-accent">Tells a Story</span></h2>
+            <p class="about-desc">At LocalShoes, we believe great footwear combines comfort, quality, and personal style. Our goal is to help everyone find the perfect pair for every occasion — from everyday walks to sports and special moments.</p>
+            <div class="about-features">
+              <div class="about-feature">
+                <div class="about-feature-icon">&#x1F3C6;</div>
+                <div><h4>Premium Quality</h4><p>Crafted from the finest materials for lasting durability.</p></div>
+              </div>
+              <div class="about-feature">
+                <div class="about-feature-icon">&#x1F48E;</div>
+                <div><h4>Modern Design</h4><p>Styles that blend street culture with everyday versatility.</p></div>
+              </div>
+              <div class="about-feature">
+                <div class="about-feature-icon">&#x1F4B8;</div>
+                <div><h4>Affordable Pricing</h4><p>Premium quality that doesn't break the bank.</p></div>
+              </div>
+            </div>
+            <a href="#products" class="btn btn-primary">Discover Our Story &#x2192;</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SPECIAL OFFERS SECTION ===================== -->
+    <section id="offers" class="offers-section">
+      <div class="offers-bg">
+        <img src="../images/hero_sneaker.jpg" alt="Special offer sneaker background" class="offers-bg-img" loading="lazy" onerror="this.style.display='none'" />
+        <div class="offers-overlay"></div>
+      </div>
+      <div class="container offers-content reveal">
+        <div class="offers-badge">&#x1F3F7;&#xFE0F; Limited Time Deal</div>
+        <h2 class="offers-heading">FIND YOUR<br /><span class="hero-accent">PERFECT FIT</span></h2>
+        <p class="offers-subtitle">Upgrade Your Everyday Style with Exclusive Deals.<br />Up to <strong>40% OFF</strong> on selected styles.</p>
+        <a href="#products" class="btn btn-primary btn-lg offers-cta" id="offers-explore-btn">Explore Offers &#x2192;</a>
+      </div>
+    </section>
+
+    <!-- ===================== WHY CHOOSE US ===================== -->
+    <section id="features" class="features-section">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-badge">Why LocalShoes?</span>
+          <h2 class="section-title">Why Choose LocalShoes?</h2>
+          <p class="section-subtitle">We're more than just a shoe store — we're your style partner</p>
+        </div>
+        <div class="features-grid">
+          <div class="feature-card reveal" tabindex="0">
+            <div class="feature-icon-wrap"><span class="feature-icon">&#x1F3C6;</span></div>
+            <h3 class="feature-title">Premium Quality</h3>
+            <p class="feature-desc">Every pair is crafted using premium materials and rigorous quality control to ensure they last season after season.</p>
+          </div>
+          <div class="feature-card reveal" tabindex="0">
+            <div class="feature-icon-wrap"><span class="feature-icon">&#x2601;&#xFE0F;</span></div>
+            <h3 class="feature-title">Comfortable Fit</h3>
+            <p class="feature-desc">Engineered for all-day comfort with memory foam insoles, breathable mesh uppers, and ergonomic designs.</p>
+          </div>
+          <div class="feature-card reveal" tabindex="0">
+            <div class="feature-icon-wrap"><span class="feature-icon">&#x1F4B0;</span></div>
+            <h3 class="feature-title">Affordable Prices</h3>
+            <p class="feature-desc">Incredible value without compromising on style or quality. Starting from just &#8377;499 for the whole family.</p>
+          </div>
+          <div class="feature-card reveal" tabindex="0">
+            <div class="feature-icon-wrap"><span class="feature-icon">&#x1F6CD;&#xFE0F;</span></div>
+            <h3 class="feature-title">Easy Shopping</h3>
+            <p class="feature-desc">Seamlessly browse, filter, and find your size online. Fast shipping, easy returns, and dedicated support.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CONTACT SECTION ===================== -->
+    <section id="contact" class="contact-section">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-badge">Get In Touch</span>
+          <h2 class="section-title">Contact Us</h2>
+          <p class="section-subtitle">We'd love to hear from you. Reach out anytime!</p>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-info reveal">
+            <div class="contact-info-item">
+              <div class="contact-info-icon">&#x1F4E7;</div>
+              <div><h4>Email Us</h4><p>hello@localshoes.example</p><p>support@localshoes.example</p></div>
+            </div>
+            <div class="contact-info-item">
+              <div class="contact-info-icon">&#x1F4DE;</div>
+              <div><h4>Call Us</h4><p>+91 00000 00000</p><p>Mon – Sat, 10am – 7pm IST</p></div>
+            </div>
+            <div class="contact-info-item">
+              <div class="contact-info-icon">&#x1F4CD;</div>
+              <div><h4>Our Store</h4><p>123 Style Street, Fashion District</p><p>Mumbai, Maharashtra – 400001</p></div>
+            </div>
+            <div class="contact-socials">
+              <span class="contact-socials-label">Follow Us</span>
+              <div class="social-icons">
+                <a href="#" class="social-icon" aria-label="Instagram" rel="noopener">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                </a>
+                <a href="#" class="social-icon" aria-label="Twitter" rel="noopener">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path></svg>
+                </a>
+                <a href="#" class="social-icon" aria-label="Facebook" rel="noopener">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path></svg>
+                </a>
+                <a href="#" class="social-icon" aria-label="YouTube" rel="noopener">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.54C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"></path><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"></polygon></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+          <form class="contact-form reveal reveal-right" id="contact-form" novalidate aria-label="Contact form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="contact-name">Full Name <span class="req" aria-hidden="true">*</span></label>
+                <input type="text" id="contact-name" name="name" placeholder="Your full name" required autocomplete="name" aria-required="true" />
+                <span class="form-error" id="err-name" role="alert"></span>
+              </div>
+              <div class="form-group">
+                <label for="contact-email">Email Address <span class="req" aria-hidden="true">*</span></label>
+                <input type="email" id="contact-email" name="email" placeholder="you@email.com" required autocomplete="email" aria-required="true" />
+                <span class="form-error" id="err-email" role="alert"></span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="contact-subject">Subject <span class="req" aria-hidden="true">*</span></label>
+              <input type="text" id="contact-subject" name="subject" placeholder="What's this about?" required aria-required="true" />
+              <span class="form-error" id="err-subject" role="alert"></span>
+            </div>
+            <div class="form-group">
+              <label for="contact-message">Message <span class="req" aria-hidden="true">*</span></label>
+              <textarea id="contact-message" name="message" rows="5" placeholder="Tell us how we can help..." required aria-required="true"></textarea>
+              <span class="form-error" id="err-message" role="alert"></span>
+            </div>
+            <button type="submit" class="btn btn-primary btn-full" id="contact-submit-btn">Send Message &#x1F680;</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-top">
+      <div class="container footer-grid">
+        <div class="footer-brand">
+          <a href="#home" class="nav-logo footer-logo" aria-label="LocalShoes Home">
+            <span class="logo-icon">&#x1F45F;</span>
+            <span class="logo-text">Local<span class="logo-accent">Shoes</span></span>
+          </a>
+          <p class="footer-brand-desc">Step into your style with LocalShoes — premium footwear for men, women, and kids at prices that make sense.</p>
+          <div class="social-icons footer-socials">
+            <a href="#" class="social-icon" aria-label="Instagram" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+            </a>
+            <a href="#" class="social-icon" aria-label="Twitter" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path></svg>
+            </a>
+            <a href="#" class="social-icon" aria-label="Facebook" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path></svg>
+            </a>
+            <a href="#" class="social-icon" aria-label="YouTube" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.54C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"></path><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"></polygon></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3 class="footer-col-title">Quick Links</h3>
+          <ul class="footer-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#products">Products</a></li>
+            <li><a href="#offers">Offers</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3 class="footer-col-title">Collections</h3>
+          <ul class="footer-links">
+            <li><a href="#men">Men's Shoes</a></li>
+            <li><a href="#women">Women's Shoes</a></li>
+            <li><a href="#kids">Kids' Shoes</a></li>
+            <li><a href="#products">Running Shoes</a></li>
+            <li><a href="#products">Casual Sneakers</a></li>
+          </ul>
+        </div>
+        <div class="footer-col footer-newsletter">
+          <h3 class="footer-col-title">Stay Updated</h3>
+          <p class="footer-newsletter-desc">Subscribe for exclusive deals, new arrivals, and style inspiration.</p>
+          <form class="newsletter-form" id="newsletter-form" novalidate aria-label="Newsletter subscription">
+            <label for="newsletter-email" class="sr-only">Your email address</label>
+            <input type="email" id="newsletter-email" placeholder="Enter your email" aria-label="Email for newsletter" required />
+            <button type="submit" class="btn btn-primary newsletter-btn" aria-label="Subscribe to newsletter">Subscribe</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <p class="footer-copy">&#169; 2026 LocalShoes. All Rights Reserved.</p>
+        <div class="footer-legal">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Sitemap</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>
