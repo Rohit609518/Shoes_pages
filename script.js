@@ -568,11 +568,16 @@ function initNavbar() {
 function initMobileMenu() {
   const hamburger = document.getElementById('hamburger-btn');
   const navLinks = document.getElementById('nav-links');
+  const navOverlay = document.getElementById('nav-overlay');
+
+  if (!hamburger || !navLinks) return;
 
   hamburger.addEventListener('click', () => {
     const isOpen = navLinks.classList.toggle('open');
     hamburger.classList.toggle('open', isOpen);
     hamburger.setAttribute('aria-expanded', isOpen);
+    if (navOverlay) navOverlay.classList.toggle('open', isOpen);
+    document.body.classList.toggle('nav-open', isOpen);
   });
 
   // Close when a nav link is clicked
@@ -580,9 +585,21 @@ function initMobileMenu() {
     a.addEventListener('click', closeMobileMenu);
   });
 
+  // Close when overlay is clicked
+  if (navOverlay) {
+    navOverlay.addEventListener('click', closeMobileMenu);
+  }
+
   // Close on outside click
   document.addEventListener('click', e => {
-    if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
+    if (!hamburger.contains(e.target) && !navLinks.contains(e.target) && (!navOverlay || !navOverlay.contains(e.target))) {
+      closeMobileMenu();
+    }
+  });
+
+  // Reset menu if window is resized past mobile breakpoint
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 900) {
       closeMobileMenu();
     }
   });
@@ -591,9 +608,14 @@ function initMobileMenu() {
 function closeMobileMenu() {
   const hamburger = document.getElementById('hamburger-btn');
   const navLinks = document.getElementById('nav-links');
-  navLinks.classList.remove('open');
-  hamburger.classList.remove('open');
-  hamburger.setAttribute('aria-expanded', 'false');
+  const navOverlay = document.getElementById('nav-overlay');
+  if (navLinks) navLinks.classList.remove('open');
+  if (hamburger) {
+    hamburger.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+  }
+  if (navOverlay) navOverlay.classList.remove('open');
+  document.body.classList.remove('nav-open');
 }
 
 /* ============================================================
